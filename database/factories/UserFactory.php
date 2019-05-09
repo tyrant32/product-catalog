@@ -2,10 +2,11 @@
 declare(strict_types=1);
 
 /** @var Factory $factory */
+
 use App\User;
+use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Str;
-use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +21,11 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'name'              => $faker->name,
+        'email'             => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => $faker->unique()->password,
-        'remember_token' => Str::random(10),
-        'api_key' => Str::random(20),
+        'password'          => bcrypt($faker->unique()->password),
+        'remember_token'    => Str::random(10),
+        'api_key'           => Str::random(20),
     ];
 });

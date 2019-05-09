@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,4 +38,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * @return HasOne
+     */
+    public function product()
+    {
+        return $this->hasOne(Product::class);
+    }
 }

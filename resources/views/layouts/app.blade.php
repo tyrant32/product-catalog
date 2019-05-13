@@ -9,15 +9,14 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ env('APP_URL').mix('/css/app.css') }}" rel="stylesheet">
+
+    @include('layouts.head-services')
 </head>
 <body>
     <div id="app">
@@ -76,5 +75,15 @@
             @yield('content')
         </main>
     </div>
+
+    @include('layouts.footer')
+
+    <!-- Scripts -->
+    <script src="{{ env('APP_URL').mix('/js/app.js') }}"></script>
+
+    @if(app()->environment() === 'production')
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c9a69d26077b916"></script>
+    @endif
 </body>
 </html>

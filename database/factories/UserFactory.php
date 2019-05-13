@@ -20,12 +20,14 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $token = \Str::random(20);
+    
     return [
         'name'              => $faker->name,
         'email'             => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password'          => bcrypt($faker->unique()->password),
         'remember_token'    => Str::random(10),
-        'api_key'           => Str::random(20),
+        'api_token' => substr(hash('sha256', $token),0,20),
     ];
 });

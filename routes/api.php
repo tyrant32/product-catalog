@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:api', 'namespace' => 'API'], function () {
-    Route::get('products', 'ProductsController@list');
+    Route::get('products', 'ProductsController@index');
     Route::get('products/{id}', 'ProductsController@show');
     Route::post('products', 'ProductsController@create');
     Route::put('products/{id}', 'ProductsController@update');

@@ -101,10 +101,10 @@ npm run prod
 
 ---
 
-# Demo: [https://ivan-ivanov.info/product-catalog](https://ivan-ivanov.info/product-catalog "Product Catalog CRUD Example")
-
----
-
 # Laravel 5.8.*
+
+# PHP 7.3.*
+
+# Vue.js
 
 ---

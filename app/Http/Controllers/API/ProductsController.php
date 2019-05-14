@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Auth;
+use Cache;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -20,7 +21,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = \Cache::remember(md5('products-list'), 60, function () {
+        $products = Cache::remember(md5('products-list'), 60, function () {
             return (new Product)
                 ->where(['user_id' => Auth::user()->id])
                 ->get();
@@ -36,8 +37,9 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = \Cache::remember(md5('product-show-'.$id), 60, function () use ($id) {
-            return Product::findOrFail($id);
+        $product = Cache::remember(md5('product-show-'.$id), 60, function () use ($id) {
+            return (new Product)->where(['user_id' => Auth::user()->id])
+                ::findOrFail($id);
         });
     
         return response()->json($product->jsonSerialize(), Response::HTTP_OK);
@@ -54,7 +56,7 @@ class ProductsController extends Controller
         
         $product = Product::create(request()->all());
     
-        \Cache::flush();
+        Cache::flush();
     
         return response($product->jsonSerialize(), Response::HTTP_CREATED);
     }
@@ -73,7 +75,7 @@ class ProductsController extends Controller
         $product->fill(request()->all());
         $product->save();
     
-        \Cache::flush();
+        Cache::flush();
     
         return response(null, Response::HTTP_OK);
     }
@@ -81,12 +83,16 @@ class ProductsController extends Controller
     /**
      * @param $id
      * @return JsonResponse
+     * @throws \Exception
      */
     public function delete($id)
     {
-        Product::destroy($id);
+        (new Product)
+            ->where(['id' => $id])
+            ->where(['user_id' => Auth::user()->id])
+            ->delete();
     
-        \Cache::flush();
+        Cache::flush();
     
         return response(null, Response::HTTP_OK);
     }

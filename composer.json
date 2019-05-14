@@ -5,7 +5,9 @@
     "keywords": [
       "framework",
       "laravel",
-      "vuejs",
+      "vue",
+      "axios",
+      "bootstrap",
       "product",
       "products",
       "crud"

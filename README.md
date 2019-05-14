@@ -86,3 +86,25 @@ specification below:
 • Add timestamps to store date of creation and last modification
 
 • Apply soft deletes to virtually delete a product without removing its record from the database
+
+# Run Project
+
+php composer install
+
+npm install
+
+php artisan migrate
+
+php artisan db:seed
+
+npm run prod
+
+---
+
+# Demo: [https://ivan-ivanov.info/product-catalog](https://ivan-ivanov.info/product-catalog "Product Catalog CRUD Example")
+
+---
+
+# Laravel 5.8.*
+
+---

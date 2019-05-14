@@ -1,10 +1,14 @@
 {
-    "name": "laravel/laravel",
+  "name": "tyrant32/product-catalog",
     "type": "project",
-    "description": "The Laravel Framework.",
+  "description": "Product Catalog.",
     "keywords": [
         "framework",
-        "laravel"
+      "laravel",
+      "vuejs",
+      "product",
+      "products",
+      "crud"
     ],
     "license": "MIT",
     "require": {

@@ -245,7 +245,7 @@
                 if (api_token.length) {
                     axios.get('api/products')
                         .then(res => {
-                            this.products = res.data.data;
+                            this.products = res.data;
                         })
                         .catch(e => {
                             console.log(e);
@@ -263,7 +263,6 @@
                     .catch(e => {
                         console.log(e);
                     });
-
             },
             create(event) {
                 event.preventDefault();

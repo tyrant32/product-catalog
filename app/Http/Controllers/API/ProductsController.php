@@ -20,8 +20,11 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::where(['user_id' => Auth::user()->id])
-            ->all();
+        $products = \Cache::remember(md5('products-list'), 60, function () {
+            return (new Product)
+                ->where(['user_id' => Auth::user()->id])
+                ->get();
+        });
     
         return response()
             ->json($products->jsonSerialize(), Response::HTTP_OK);
@@ -33,7 +36,9 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = Product::findOrFail($id);
+        $product = \Cache::remember(md5('product-show-'.$id), 60, function () use ($id) {
+            return Product::findOrFail($id);
+        });
     
         return response()->json($product->jsonSerialize(), Response::HTTP_OK);
     }
@@ -48,6 +53,8 @@ class ProductsController extends Controller
         ]);
         
         $product = Product::create(request()->all());
+    
+        \Cache::flush();
     
         return response($product->jsonSerialize(), Response::HTTP_CREATED);
     }
@@ -66,6 +73,8 @@ class ProductsController extends Controller
         $product->fill(request()->all());
         $product->save();
     
+        \Cache::flush();
+    
         return response(null, Response::HTTP_OK);
     }
     
@@ -76,6 +85,8 @@ class ProductsController extends Controller
     public function delete($id)
     {
         Product::destroy($id);
+    
+        \Cache::flush();
     
         return response(null, Response::HTTP_OK);
     }

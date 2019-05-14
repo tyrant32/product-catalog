@@ -53,3 +53,36 @@ used with the response content.
 | PUT      | /products/{id} | Updates an existing product of the user |
 | DELETE   | /products/{id} | Remove a product for the user |
 
+# Entities
+
+This section contains information about the entities in the mini-platform.
+
+# Users
+
+The users should be able to log in with username and password. Note that you can freely use the
+default functionality in Laravel or the framework of your choice. You need one more custom field -
+**API key** for API implementation to authenticate the user. It should be **unique and automatically
+generated for each user**. It should be **20 characters** long.
+
+# Products
+
+Products owned by one user cannot be accessed or modified by other users. Please refer to their
+specification below:
+
+| Primary End-Points ||
+| ------------- |---------------|
+| Property      | Description      |
+| Name     | The name of the product - free text, min. 2 characters, max. 20 characters      |
+| Description      | Free large text; max. size 16 KiB |
+| Price      | Numeric price of the product; min. 0.00, max. 100 000.00 |
+| Active   | A boolean flag indicating if the product is active or not |
+| User   | The owning user of the product |
+
+# Bonus Objectives
+• Create forgotten password functionality along with the login and register page
+
+• Use a queue to store cache update commands, you would need a listener to consume it
+
+• Add timestamps to store date of creation and last modification
+
+• Apply soft deletes to virtually delete a product without removing its record from the database

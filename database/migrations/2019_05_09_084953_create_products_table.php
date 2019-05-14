@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateProductsTable
@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('name',20)->unique();
             $table->text('description');
             $table->double('price',8,2);
+            $table->softDeletes();
             $table->timestamps();
     
             $table->foreign('user_id')

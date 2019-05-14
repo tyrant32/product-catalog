@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Product;
+use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -19,7 +20,11 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return response()->json(Product::paginate()->jsonSerialize(), Response::HTTP_OK);
+        $products = Product::where(['user_id' => Auth::user()->id])
+            ->all();
+    
+        return response()
+            ->json($products->jsonSerialize(), Response::HTTP_OK);
     }
     
     /**
@@ -39,7 +44,7 @@ class ProductsController extends Controller
     public function create()
     {
         request()->merge([
-            'user_id' => \Auth::user()->id
+            'user_id' => Auth::user()->id
         ]);
         
         $product = Product::create(request()->all());
@@ -54,7 +59,7 @@ class ProductsController extends Controller
     public function update($id)
     {
         request()->merge([
-            'user_id' => \Auth::user()->id
+            'user_id' => Auth::user()->id
         ]);
         
         $product = Product::findOrFail($id);

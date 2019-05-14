@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
             'remember_token' => Str::random(10),
             'api_token' => substr(hash('sha256', $token),0,20),
         ]);
-        
-        factory(User::class, 50)->create();
+    
+        factory(User::class, 10)->create();
     }
 }

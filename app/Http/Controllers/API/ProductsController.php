@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 /**
  * Class ProductsController
@@ -18,7 +19,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return response()->json((new Product)->paginate());
+        return response()->json(Product::paginate()->jsonSerialize(), Response::HTTP_OK);
     }
     
     /**
@@ -27,7 +28,9 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        return response()->json([]);
+        $product = Product::findOrFail($id);
+    
+        return response()->json($product->jsonSerialize(), Response::HTTP_OK);
     }
     
     /**
@@ -35,7 +38,10 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return response()->json([]);
+        dd(\request()->all());
+        $product = Product::create(request()->all());
+    
+        return response($product->jsonSerialize(), Response::HTTP_CREATED);
     }
     
     /**
@@ -44,7 +50,11 @@ class ProductsController extends Controller
      */
     public function update($id)
     {
-        return response()->json([]);
+        $product = Product::findOrFail($id);
+        $product->fill(request()->all());
+        $product->save();
+    
+        return response(null, Response::HTTP_OK);
     }
     
     /**
@@ -53,6 +63,8 @@ class ProductsController extends Controller
      */
     public function delete($id)
     {
-        return response()->json([]);
+        Product::destroy($id);
+    
+        return response(null, Response::HTTP_OK);
     }
 }

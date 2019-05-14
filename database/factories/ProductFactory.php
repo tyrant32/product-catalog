@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        'user_id' => User::inRandomOrder()->first()->id,
-        'active' => rand(0,1),
-        'name' => $faker->unique()->firstName,
-        'description' => $faker->text('16000'),
-        'price' => 100000.00,
+        'user_id'     => User::inRandomOrder()->first()->id,
+        'active'      => rand(0,1),
+        'name'        => $faker->unique()->firstName,
+        'description' => $faker->paragraph,
+        'price'       => rand(1, 100000) / 10,
     ];
 });

@@ -2008,7 +2008,7 @@ window.axios.defaults.headers.common = {
 
       if (api_token.length) {
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/products').then(function (res) {
-          _this.products = res.data.data;
+            _this.products = res.data;
         })["catch"](function (e) {
           console.log(e);
         });
@@ -37455,9 +37455,9 @@ var render = function() {
                       {
                         staticClass: "btn btn-success",
                         attrs: {
-                          href: "#",
+                            "data-target": "#productShow",
                           "data-toggle": "modal",
-                          "data-target": "#productShow"
+                            href: "#"
                         },
                         on: {
                           click: function($event) {
@@ -37478,9 +37478,9 @@ var render = function() {
                       {
                         staticClass: "btn btn-primary",
                         attrs: {
-                          href: "#",
+                            "data-target": "#editProductForm",
                           "data-toggle": "modal",
-                          "data-target": "#editProductForm"
+                            href: "#"
                         },
                         on: {
                           click: function($event) {
@@ -37529,11 +37529,11 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
+            "aria-hidden": "true",
+            "aria-labelledby": "modelTitleId",
           id: "productShow",
-          tabindex: "-1",
           role: "dialog",
-          "aria-labelledby": "modelTitleId",
-          "aria-hidden": "true"
+            tabindex: "-1"
         }
       },
       [
@@ -37595,11 +37595,11 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
+            "aria-hidden": "true",
+            "aria-labelledby": "modelTitleId",
           id: "addProductForm",
-          tabindex: "-1",
           role: "dialog",
-          "aria-labelledby": "modelTitleId",
-          "aria-hidden": "true"
+            tabindex: "-1"
         }
       },
       [
@@ -37632,11 +37632,11 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
+            "aria-hidden": "true",
+            "aria-labelledby": "modelTitleId",
           id: "editProductForm",
-          tabindex: "-1",
           role: "dialog",
-          "aria-labelledby": "modelTitleId",
-          "aria-hidden": "true"
+            tabindex: "-1"
         }
       },
       [
@@ -37659,9 +37659,9 @@ var render = function() {
                 [
                   _c("input", {
                     attrs: {
-                      type: "hidden",
                       id: "editID",
                       name: "id",
+                        type: "hidden",
                       value: ""
                     }
                   }),
@@ -37692,9 +37692,9 @@ var staticRenderFns = [
           {
             staticClass: "btn btn-success pull-right",
             attrs: {
-              href: "#",
+                "data-target": "#addProductForm",
               "data-toggle": "modal",
-              "data-target": "#addProductForm"
+                href: "#"
             }
           },
           [
@@ -37749,9 +37749,9 @@ var staticRenderFns = [
       {
         staticClass: "close",
         attrs: {
-          type: "button",
+            "aria-label": "Close",
           "data-dismiss": "modal",
-          "aria-label": "Close"
+            type: "button"
         }
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
@@ -37766,7 +37766,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
+            attrs: {"data-dismiss": "modal", type: "button"}
         },
         [_vm._v("Close")]
       )
@@ -37790,9 +37790,9 @@ var staticRenderFns = [
         {
           staticClass: "close",
           attrs: {
-            type: "button",
+              "aria-label": "Close",
             "data-dismiss": "modal",
-            "aria-label": "Close"
+              type: "button"
           }
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
@@ -37809,9 +37809,9 @@ var staticRenderFns = [
           _c("input", {
             staticClass: "form-check-input",
             attrs: {
-              type: "checkbox",
+                id: "add_product_active",
               name: "active",
-              id: "add_product_active",
+                type: "checkbox",
               value: "1"
             }
           }),
@@ -37820,43 +37820,43 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "product_name" } }),
+          _c("label", {attrs: {for: "add_product_name"}}),
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
           attrs: {
-            type: "text",
+              id: "add_product_name",
             name: "name",
-            id: "add_product_name",
-            placeholder: "Product Name..."
+              placeholder: "Product Name...",
+              type: "text"
           }
         })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "product_description" } }),
+          _c("label", {attrs: {for: "add_product_description"}}),
         _vm._v(" "),
         _c("textarea", {
           staticClass: "form-control",
           attrs: {
-            name: "description",
             id: "add_product_description",
-            rows: "3",
-            placeholder: "Product Description..."
+              name: "description",
+              placeholder: "Product Description...",
+              rows: "3"
           }
         })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "product_price" } }),
+          _c("label", {attrs: {for: "add_product_price"}}),
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
           attrs: {
-            type: "text",
-            name: "name",
             id: "add_product_price",
-            placeholder: "Product Price..."
+              name: "name",
+              placeholder: "Product Price...",
+              type: "text"
           }
         })
       ])
@@ -37871,7 +37871,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass: "btn btn-secondary btn-close",
-          attrs: { type: "button", "data-dismiss": "modal" }
+            attrs: {"data-dismiss": "modal", type: "button"}
         },
         [_vm._v("Close")]
       ),
@@ -37901,9 +37901,9 @@ var staticRenderFns = [
         {
           staticClass: "close",
           attrs: {
-            type: "button",
+              "aria-label": "Close",
             "data-dismiss": "modal",
-            "aria-label": "Close"
+              type: "button"
           }
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
@@ -37920,9 +37920,9 @@ var staticRenderFns = [
           _c("input", {
             staticClass: "form-check-input",
             attrs: {
-              type: "checkbox",
+                id: "edit_product_active",
               name: "active",
-              id: "edit_product_active",
+                type: "checkbox",
               value: "1"
             }
           }),
@@ -37931,43 +37931,43 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "product_name" } }),
+          _c("label", {attrs: {for: "edit_product_name"}}),
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
           attrs: {
-            type: "text",
-            name: "name",
             id: "edit_product_name",
-            placeholder: "Product Name..."
+              name: "name",
+              placeholder: "Product Name...",
+              type: "text"
           }
         })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "product_description" } }),
+          _c("label", {attrs: {for: "edit_product_description"}}),
         _vm._v(" "),
         _c("textarea", {
           staticClass: "form-control",
           attrs: {
+              id: "edit_product_description",
             name: "description",
-            id: "edit_product_description",
-            rows: "3",
-            placeholder: "Product Description..."
+              placeholder: "Product Description...",
+              rows: "3"
           }
         })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "product_price" } }),
+          _c("label", {attrs: {for: "edit_product_price"}}),
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
           attrs: {
-            type: "text",
+              id: "edit_product_price",
             name: "name",
-            id: "edit_product_price",
-            placeholder: "Product Price..."
+              placeholder: "Product Price...",
+              type: "text"
           }
         })
       ])
@@ -37982,7 +37982,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass: "btn btn-secondary btn-close2",
-          attrs: { type: "button", "data-dismiss": "modal" }
+            attrs: {"data-dismiss": "modal", type: "button"}
         },
         [_vm._v("Close")]
       ),

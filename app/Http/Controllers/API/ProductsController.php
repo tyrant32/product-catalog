@@ -38,7 +38,10 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        dd(\request()->all());
+        request()->merge([
+            'user_id' => \Auth::user()->id
+        ]);
+        
         $product = Product::create(request()->all());
     
         return response($product->jsonSerialize(), Response::HTTP_CREATED);
@@ -50,6 +53,10 @@ class ProductsController extends Controller
      */
     public function update($id)
     {
+        request()->merge([
+            'user_id' => \Auth::user()->id
+        ]);
+        
         $product = Product::findOrFail($id);
         $product->fill(request()->all());
         $product->save();

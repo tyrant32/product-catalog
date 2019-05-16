@@ -6,7 +6,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'yarn install'
+                sh 'composer install'
+                sh 'ant'
             }
         }
         stage('Deliver for development') {
@@ -14,6 +16,7 @@ pipeline {
                 branch 'develop'
             }
             steps {
+                sh 'composer update -o'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
         }
@@ -22,6 +25,7 @@ pipeline {
                 branch 'prod'
             }
             steps {
+                sh 'composer update -o'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
         }
